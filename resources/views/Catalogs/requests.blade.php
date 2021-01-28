@@ -75,13 +75,13 @@
 
                             <label for="active">¿Se entrego el producto?</label>
                             <div class="custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" name="active" id="active" checked>
+                              <input type="checkbox" class="custom-control-input" name="active" id="active">
                               <label class="custom-control-label" for="active">Deslice a la derecha para activar</label>
                             </div>
                           </div>
 
 
-                          <div class="form-group" id="deliveryPicture"></div>
+                          <div class="form-group files-div" id="deliveryPicture"></div>
                   </div>
                   <div class="modal-footer">
                       <button type="submit" class="btn btn-primary" id="confirmation">Confirmar</button>
@@ -115,7 +115,7 @@
                             </div>
                             </span>
                             <label for="addDelivery" class="label-button">
-                                <span id="title-dept">Subir la imagen de entrega</span>
+                                <span id="title-image">Subir la imagen de entrega</span>
                             </label>
                           </div>
                           {{-- <div class="form-group" id="activeMain">

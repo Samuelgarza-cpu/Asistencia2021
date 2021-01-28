@@ -33,6 +33,7 @@ use App\FamilySituation;
 use App\RPDDisabilities;
 use App\SupplierProduct;
 use App\BuildingMaterial;
+use App\deliberypictures;
 use App\RequestFurniture;
 use App\DepartmentInstitute;
 use App\RequestInsDepSupPro;
@@ -886,13 +887,13 @@ class RequestsController extends Controller
                             $value->actions = '
                             <a class="showDocument" id="showDocument" title="VerDocumento"> <i class="fas fa-eye"></i></a>
                            ';
-                            
+
                         }
                         else{
                         $value->actions = '
                         <a class="showDocument" id="showDocument" title="VerDocumento"> <i class="fas fa-eye"></i></a>
                         <a class="addDeliveryPicture" id="addDeliveryPicture" title="Anexar Documento"> <i class="fas fa-camera"></i></a>';
-                        
+
                         }
                     break;
                     case 5:
@@ -936,21 +937,35 @@ class RequestsController extends Controller
                     $stampFile = $request->file('document');
                     $stampName = 'document-'.$requisition->folio.'.PDF';
 
-                    $departmentInstitute = Document::create([
+                    $document = Document::create([
                         'name' => $stampName,
                         'requests_id' => $requisition->id
                     ]);
-                    $departmentInstitute->save();
+                    $document->save();
+
+                    $status = $request->active == "on" ? 1 : 0;
+
+                    if($request->file('deliveryImage') != '' && $request->file('deliveryImage') != null){
+                        $stampFile = $request->file('deliveryImage');
+                        $stampName = 'imagenEntrega-'.$requisition->folio.'.jpg';
+
+                        $deliveryImage = deliberypictures::create([
+                            'name' => $stampName,
+                            'requests_id' => $requisition->id
+                        ]);
+                        $deliveryImage->save();
+
+                        Storage::disk('local')->put($stampName,  \File::get($stampFile));
+                    }
 
                     Storage::disk('local')->put($stampName,  \File::get($stampFile));
-                    $status = $request->active == "on" ? 1 : 0;
+
                     $requisition->status_id = $status == 1 ? 3 : 2;
                     $requisition->save();
                     $status = $this->statusChange($requisition->status_id);
                     $folio=array('folio'=>$requisition->folio, 'status' => $status);
-
-
                     Mail::to('cuentabusiness50@gmail.com')->send(new StatusSolicitudMail($folio));
+
                     return redirect('solicitudes')->with('success','Tus datos fueron almacenados de forma satisfactoria.');
                 }
                 return redirect('solicitudes')->with('error','Tus datos no fueron almacenados de forma satisfactoria.');

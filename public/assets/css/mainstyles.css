@@ -11663,16 +11663,8 @@ body.sidebar-toggled footer.sticky-footer {
 #signature,
 #image,
 #stamp,
-#document {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
-#addDelivery {
+#document,
+#deliveryImage {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
