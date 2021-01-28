@@ -79,7 +79,9 @@
                               <label class="custom-control-label" for="active">Deslice a la derecha para activar</label>
                             </div>
                           </div>
-                          <div id="form-group deliveryPicture"></div>
+
+
+                          <div class="form-group" id="deliveryPicture"></div>
                   </div>
                   <div class="modal-footer">
                       <button type="submit" class="btn btn-primary" id="confirmation">Confirmar</button>

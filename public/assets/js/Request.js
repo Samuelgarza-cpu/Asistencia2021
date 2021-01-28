@@ -30,15 +30,35 @@ $(function() {
 
 function addDeliveryPictures() {
     if (this.checked) {
-        console.log("Sam es un buitre con hombres");
+
+        var deliverypicturedivID = $('#deliveryPicture');
+        var inputdeliveryid = "inputdeliverypicture";
+
+
+        var inputdelivery = document.createElement('input');
+        inputdelivery.setAttribute("type", "file");
+        inputdelivery.setAttribute("class", "form-control");
+        inputdelivery.setAttribute("id", "document");
+        inputdelivery.setAttribute("name", inputdeliveryid);
+        inputdelivery.setAttribute("placeholder", "Ingresar la CURP");
+        inputdelivery.setAttribute("accept", "application/pdf");
+        inputdelivery.setAttribute("required", "required");
+
+        var labeldelivery = document.createElement('label');
+        labeldelivery.setAttribute("for", inputdeliveryid);
+        labeldelivery.textContent = "Subir el documento de la solicitud";
+        deliverypicturedivID.append(inputdelivery);
+        deliverypicturedivID.append(labeldelivery);
+
+
+
+
+
 
     } else {
         console.log("Sam es un buitre con mujeres");
     }
 
-    var deliveryPicture = 'addpicrureinput'
-    var firstDiv = document.createElement("input");
-    firstDiv.setAttribute("id", deliveryPicture);
 
 }
 
