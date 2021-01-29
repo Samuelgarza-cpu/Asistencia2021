@@ -789,7 +789,7 @@ class RequestsController extends Controller
             foreach ($requests as $value)
             {
                 $requestPersonalData = RequestPersonalData::where('requests_id', '=', $value->id)->get();
-                $requestCount = $requestPersonalData->count();
+                $requestCount = $requestPersonalData->count();  
                 $beneficiariesName = "";
                 $beneficiariesCurp = "";
                 $beneficiariesPhones = "";

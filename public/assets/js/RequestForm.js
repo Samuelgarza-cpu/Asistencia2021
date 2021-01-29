@@ -986,6 +986,8 @@ function addBeneficiary() {
     total++;
     $('#countTotalB').val(total);
 
+    var MaskInputAge = $('#agebeneficiary' + count)
+    MaskInputAge.mask('000');
     var requestsDiv = $('#requests');
     var btnDeleteID = "deleteB-" + count;
     var firstDivID = "fDB-" + count;
@@ -1082,7 +1084,10 @@ function addBeneficiary() {
     inputAge.setAttribute("type", "text");
     inputAge.setAttribute("class", "form-control");
     inputAge.setAttribute("id", ageId);
+    inputAge.setAttribute("data-mask", "000");
     inputAge.setAttribute("name", ageId);
+
+
     inputAge.setAttribute("required", "required");
     inputAge.setAttribute("placeholder", "Ingresar la edad");
 
