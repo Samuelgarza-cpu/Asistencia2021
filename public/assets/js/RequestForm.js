@@ -2316,7 +2316,7 @@ function verifyCurp(btn) {
                     alertify.success(response['message']['text']);
                 }
             } else if (response['requisition'] != null) {
-                Name.val(response['requisition']['petitioner']);
+                name.val(response['requisition']['petitioner']);
                 if (response['message'] != null && response['message']['exist'] == 1) {
                     alertify.error(response['message']['text']);
                 } else {

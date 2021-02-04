@@ -112,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/solicitudes', 'inside\RequestsController@requests');
     Route::get('/nueva_solicitud', 'inside\RequestsController@new');
     Route::post('/nueva_solicitud', 'inside\RequestsController@save');
-    Route::get('/modificar_solicitud/{id}', 'inside\RequestsController@indexUp');
+    Route::get('/modificar_solicitud/{id}', 'inside\RequestsController@updated');
     Route::post('/modificar_solicitud/{id}', 'inside\RequestsController@save');
     Route::get('/generardocumento/{id}','inside\RequestsController@document');
     Route::get('/verdocumento/{id}','inside\RequestsController@showDoc');

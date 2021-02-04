@@ -130,6 +130,8 @@ class RequestsController extends Controller
           return view('catalogs.RequestsForm', $data);
     }
 
+
+
     // public function check(Request $request){
     //     $personaData = PersonalData::where('curp','=',$request->curp);
     //     if(isset($personaData)){
@@ -789,7 +791,7 @@ class RequestsController extends Controller
             foreach ($requests as $value)
             {
                 $requestPersonalData = RequestPersonalData::where('requests_id', '=', $value->id)->get();
-                $requestCount = $requestPersonalData->count();  
+                $requestCount = $requestPersonalData->count();
                 $beneficiariesName = "";
                 $beneficiariesCurp = "";
                 $beneficiariesPhones = "";
@@ -844,10 +846,11 @@ class RequestsController extends Controller
                 switch($value->status_id){
                     case 1:
                         $value->status = "Pendiente Anexo Archivos";
-                        if(session('user_agent') != 'Admin' && session('user_agent') != 'DirGen'&& session('user_agent') != 'SuperAsSo'){
+                        if(session('user_agent') != 'DirGen'&& session('user_agent') != 'SuperAsSo'){
                             $value->actions = '
                             <a class="addDocument" id="addDocument" title="Anexar Documento"> <i class="fas fa-file"></i></a>
-                            <a class="generatePDF" id="generatePDF" title="Generar Documentos"> <i class="fas fa-file"></i></a>';
+                            <a class="generatePDF" id="generatePDF" title="Generar Documentos"> <i class="fas fa-file"></i></a>
+                            <a class="update" id="update" title="Actualizar"> <i class="fas fa-file"></i></a>';
                         }
                         else{
                             $value->actions ='<a class="cancel" id="cancel" title="Cancelar"> <i class="fas fa-times-circle"></i></a>';
@@ -1095,6 +1098,20 @@ class RequestsController extends Controller
         }
     }
 
+    public function updated(Request $request, $id){
+        if(is_numeric($id)){
+
+            $requititions = Requisition::find($id);
+            dd($requititions);
+
+
+
+
+
+        }
+
+    }
+
     public function document(Request $request, $id){
         $requests = Requisition::find($id);
 
@@ -1219,7 +1236,9 @@ class RequestsController extends Controller
                 'economicData' => $economicData,
                 'familySituation' => $familySituation,
                 'requisition' => $requests,
-                'requestProducts' => $requestProducts
+                'requestProducts' => $requestProducts,
+
+
             );
             $pdf = PDF::loadView('PDF.requestsDocument', $data);
             $pdf->setPaper('A4', 'portrait');

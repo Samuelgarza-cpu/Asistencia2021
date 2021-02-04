@@ -3,7 +3,8 @@
 @endsection
 
 @section('text')
-Dashboard
+<strong>Dashboard</strong>
+
 @endsection
 
 @section('content')

@@ -15,506 +15,181 @@
   <link href="../assets/css/alertify.rtl.min.css" rel="stylesheet"/>
   @yield('cssDashboard')
   <link href="../assets/css/mainstyles.css" rel="stylesheet"/>
+  <link href="../assets/css/styles.css" rel="stylesheet" />
   <title>SISTEMA DE ASISTENCIA</title>
 </head>
 
-<body id="page-top">
-  <div id="wrapper">
-    {{-- Menú --}}
-    <ul class="navbar-nav bg-gradient-main sidebar sidebar-dark accordion" id="accordionSidebar">
-      {{-- Titulo --}}
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Sistema de Asistencia</div>
-      </a>
-      {{-- Divisor --}}
-      <hr class="sidebar-divider my-0">
-      {{-- Encabezado --}}
-      @if (session('user_agent')=='Admin'|| session('user_agent')=='CoordiAsSo'||session('user_agent')=='DirGen'||session('user_agent')=='Cont'||session('user_agent') == 'SuperAsSo')
-      <div class="sidebar-heading">
-          <i class="fas fa-cubes"></i>
-        Modulos
-      </div>
-      {{-- Lista de módulos en el menú --}}
-      <li class="nav-item">
-        <a class="nav-link" href="dashboard">
-            <i class="fas fa-fw fa-home"></i>
-          <span>Principal</span>
-        </a>
-      </li>
-      @endif
-      @if (session('user_agent')=='Admin'|| session('user_agent')=='CoordiAsSo'||session('user_agent')=='DirGen'||session('user_agent')=='Cont'||session('user_agent')=='TrSo'||session('user_agent') == 'SuperAsSo')
-      <li class="nav-item">
-        <a class="nav-link" href="solicitudes">
-            <i class="fas fa-fw fa-file-alt"></i>
-          <span>Solicitudes</span>
-        </a>
-      </li>
-
-       <!-- Divider -->
-       <hr class="sidebar-divider">
-       @endif
-       @if (session('user_agent')=='Admin')
-       {{-- Encabezado --}}
-      <div class="sidebar-heading">
-        <i class="fas fa-Book"></i>
-      Catalogos
-      </div>
-    {{-- Lista de módulos en el menú --}}
-
-      <li class="nav-item">
-        <a class="nav-link" href="institutos">
-            <i class="fas fa-fw fa-university"></i>
-            <span>Instituciones</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="departamentos">
-            <i class="fas fa-fw fa-building"></i>
-            <span>Departamentos</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="estados_solicitud">
-          <i class="fas fa-fw fa-check-square"></i>
-          <span>Estados de Solicitud</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="roles">
-          <i class="fas fa-fw fa-user-cog"></i>
-          <span>Roles</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="ocupaciones">
-          <i class="fas fa-fw fa-user-tie"></i>
-          <span>Ocupaciones</span>
-        </a>
-      </li>
-      @endif
-      @if (session('user_agent')=='Admin'||session('user_agent')=='TrSo'||session('user_agent')=='Cont'||session('user_agent')=='DirGen'||session('user_agent') == 'SuperAsSo')
-      <li class="nav-item">
-        <a class="nav-link" href="proveedores">
-          <i class="fas fa-fw fa-user-secret"></i>
-          <span>Proveedores</span>
-        </a>
-      </li>
-      @endif
-      @if (session('user_agent')=='Admin')
-      <li class="nav-item">
-        <a class="nav-link" href="usuarios">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Usuarios</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="apoyos">
-          <i class="fas fa-fw fa-hands-helping"></i>
-          <span>Apoyos</span>
-        </a>
-      </li>
-      @endif
-      @if (session('user_agent')=='Admin'||session('user_agent')=='Cont'||session('user_agent')=='DirGen')
-      <li class="nav-item">
-        <a class="nav-link" href="productos">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Productos</span>
-        </a>
-      </li>
-      @endif
-      @if (session('user_agent')=='Admin')
-      <li class="nav-item">
-        <a class="nav-link" href="categorias">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Categorias</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="materialesConstruccion">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Materiales de Construcción</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="servicios">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Servicios</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="muebles">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Muebles</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="categoria-diagnostico">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Categoria del Diagnostico </span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="diagnostico">
-          <i class="fas fa-fw fa-inbox"></i>
-          <span>Diagnostico</span>
-        </a>
-      </li>
-
-      {{-- Divisor --}}
-      <hr class="sidebar-divider">
-      {{-- Encabezado --}}
-      <div class="sidebar-heading">
-          <i class="fa fa-chart-bar"></i>
-        Relaciones
-      </div>
-      {{-- Lista de reportes en el menú --}}
-      <li class="nav-item">
-        <a class="nav-link" href="productos_apoyos">
-            <i class="fas fa-fw fa-poll"></i>
-            <span>Productos del Apoyo</span>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="apoyos_departamento">
-              <i class="fas fa-fw fa-poll"></i>
-              <span>Apoyos del Departamento</span>
-            </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="instituto_departamento">
-              <i class="fas fa-fw fa-poll"></i>
-              <span>Departamentos del Instituto</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider">
-        @endif
-        @if (session('user_agent')=='Admin'||session('user_agent')=='Soport'||session('user_agent') == 'SuperAsSo')
-
-         {{-- Encabezado --}}
-      {{-- <div class="sidebar-heading">
-        <i class="fa fa-chart-bar"></i>
-      Bitácoras
-    </div> --}}
-    {{-- Lista de reportes en el menú --}}
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="bitacora_errores">
-            <i class="fas fa-fw fa-poll"></i>
-            <span>Errores</span>
-          </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="bitacora_correos">
-            <i class="fas fa-fw fa-poll"></i>
-            <span>Correos</span>
-          </a>
-      </li> --}}
-      {{-- <hr class="sidebar-divider"> --}}
-      @endif
-      @if (session('user_agent')=='Admin'||session('user_agent')=='Cont'||session('user_agent')=='DirGen'||session('user_agent')=='TrSo'||session('user_agent') == 'SuperAsSo')
-      {{-- Encabezado --}}
-      {{-- <div class="sidebar-heading">
-          <i class="fa fa-chart-bar"></i>
-        Reportes
-      </div> --}}
-      {{-- Lista de reportes en el menú --}}
-      {{-- <li class="nav-item">
-          <a class="nav-link" href="reportes">
-              <i class="fas fa-fw fa-poll"></i>
-              <span>Reportes</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="R-EstadoCuenta">
-            <i class="fas fa-fw fa-money-check-alt"></i>
-            <span>Estado de cuenta con Proveedores</span>
-            </a>
-        </li> --}}
-      <!-- Divisor -->
-      {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
-      @endif
-      {{-- Reducir Tamaño Menú --}}
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    {{-- Fin de Menú --}}
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content">
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          {{-- Icono Menú en línea de navegación --}}
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-          <ul class="navbar-nav ml-auto">
-           @yield('notificaciones')
-
-
-
-            <!-- Nav Item - Alerts -->
-            {{-- <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <div class="small text-gray-500">
-                  @if (auth()->user()->unreadNotifications())
-                     <span class="badge badge-warning" id="nNotifications">{{auth()->user()->unreadNotifications()->count()}}</span>
-                  @else
-                   <span class="badge badge-warning" id="nNotifications">{{auth()->user()->unreadNotifications()->count()}}</span>
-
-                  @endif
-
-                </div> --}}
-
-
-              {{-- </a> --}}
-              <!-- Dropdown - Alerts -->
-              {{-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-
-                  </div>
-
-                    <span class="badge badge-light">
-                   @if(auth()->user()->unreadNotifications()->count()>0)
-                    @foreach (auth()->user()->unreadNotifications()->get() as $datos)
-                    <a class="dropdown-item d-flex align-items-center" id={{$datos->id}} href={{'/leidas/'.$datos->id}}>
-                    <p> {{$datos->data['Notificacion']}}</p>
-
-                    <span class="pull-right text-muted">{{$datos->created_at->diffForHumans()}}</span>
-                    </a>
-                    @endforeach
-
-                   @else
-                   <span class="badge badge-warning">No tienes Notifaciones</span>
-                   @endif
-
-                    </span>
-
-              <a class="dropdown-item text-center small text-gray-500" href="{{route('leidas')}}">Show All Alerts</a>
-              </div>
-            </li>
-
-
-            <div class="topbar-divider d-none d-sm-block"></div> --}}
-            {{-- <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li> --}}
-
-            {{-- <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div> --}}
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{session('user')}}</span>
-                <img class="img-profile rounded-circle" src="{{'../storage/'.session('userImage')}}">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{'perfil/'.session('user_id')}}">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Perfil
-                </a>
-                {{-- <div class="dropdown-divider"></div> --}}
-                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Cerrar sesión
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <div id="title-header" class="d-sm-flex align-items-center justify-content-between mb-4">
-            @yield('text')
-            {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Sistema de Asistencia</a>
+      <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+      <!-- Navbar-->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group" style="display: none;">
+          <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button"><svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></button>
           </div>
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <!-- Nav Item - User Information -->
+        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Cerrar sesión
+        </a>
+      </ul>
+    </nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
 
-          <!-- Content Row -->
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-home fa-fw"></i>Dashboard</div>
+              @if (session('user_agent')=='Admin'|| session('user_agent')=='CoordiAsSo'||session('user_agent')=='DirGen'||session('user_agent')=='Cont')
+              <a class="nav-link" href="/dashboard">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard
+              </a>
+              @endif
+              @if (session('user_agent')=='Admin'|| session('user_agent')=='CoordiAsSo'||session('user_agent')=='DirGen'||session('user_agent')=='Cont'||session('user_agent')=='TrSo')
+              <a class="nav-link" href="/solicitudes">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Solicitudes
+              </a>
+              @endif
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-home fa-fw"></i>Operacional</div>
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fab fa-codepen"></i></div>
+                Cátalogos
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                 @if (session('user_agent')=='Admin')
+                  <a class="nav-link" href="/institutos"><i class="fas fa-user-secret icon-margin-right"></i>Instituciones</a>
+                  <a class="nav-link" href="/departamentos"><i class="fas fa-users icon-margin-right"></i>Departamentos</a>
+                  <a class="nav-link" href="/roles"><i class="fas fa-sitemap icon-margin-right"></i>Roles</a>
+                  <a class="nav-link" href="/ocupaciones"><i class="fas fa-building icon-margin-right"></i>Ocupaciones</a>
+                  <a class="nav-link" href="/categorias"><i class="fas fa-sitemap icon-margin-right"></i>Categorias</a>
+                  <a class="nav-link" href="/materialesConstruccion"><i class="fas fa-building icon-margin-right"></i>Materiales de Construccion</a>
+                  <a class="nav-link" href="/servicios"><i class="fas fa-user-secret icon-margin-right"></i>Servicios</a>
+                  <a class="nav-link" href="/muebles"><i class="fas fa-users icon-margin-right"></i>Muebles</a>
+                  <a class="nav-link" href="/categoria-diagnostico"><i class="fas fa-sitemap icon-margin-right"></i>Categoria de Diagnostico</a>
+                  <a class="nav-link" href="/diagnostico"><i class="fas fa-building icon-margin-right"></i>Diagnostico</a>
+                  <a class="nav-link" href="/estados_solicitud"><i class="fas fa-building icon-margin-right"></i>Estados de Solicitud</a>
+                  <a class="nav-link" href="/apoyos"><i class="fas fa-user-secret icon-margin-right"></i>Apoyos</a>
+                  @endif
+                  @if (session('user_agent')=='Admin'||session('user_agent')=='TrSo'||session('user_agent')=='Cont'||session('user_agent')=='DirGen')
+                  <a class="nav-link" href="/proveedores"><i class="fas fa-building icon-margin-right"></i>Proveedores</a>
+                  <a class="nav-link" href="/productos"><i class="fas fa-users icon-margin-right"></i>Productos</a>
+                  @endif
+                </nav>
+              </div>
+              @if (session('user_agent')=='Admin')
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-home fa-fw"></i>Configuracion</div>
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting" aria-expanded="false" aria-controls="collapseSetting">
+                <div class="sb-nav-link-icon"><i class="fab fa-codepen"></i></div>
+                Sistema
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapseSetting" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="/usuarios"><i class="fas fa-user-secret icon-margin-right"></i>Usuarios</a>
+                    </nav>
+              </div>
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-home fa-fw"></i>Relaciones</div>
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelations" aria-expanded="false" aria-controls="collapseRelations">
+                <div class="sb-nav-link-icon"><i class="fab fa-codepen"></i></div>
+                Relacionar
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapseRelations" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="/productos_apoyos"><i class="fas fa-user-secret icon-margin-right"></i>Categoría del Apoyo</a>
+                      <a class="nav-link" href="/apoyos_departamento"><i class="fas fa-user-secret icon-margin-right"></i>Apoyos del Departamento</a>
+                      <a class="nav-link" href="/instituto_departamento"><i class="fas fa-user-secret icon-margin-right"></i>Departamento del Instituto</a>
+                    </nav>
+
+              </div>
+            @endif
+              @if (session('user_agent')=='Admin'||session('user_agent')=='Soport')
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-cog fa-fw"></i>Bitacoras</div>
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="sb-nav-link-icon"><i class="far fa-folder-open"></i></div>
+                 Bitacoras
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                  <a class="nav-link" href="/bitacora_errores"><i class="fas fa-exclamation-triangle icon-margin-right"></i>Bitácora de errores</a>
+                  <a class="nav-link" href="/reporte_formatos"><i class="far fa-file-alt icon-margin-right"></i>Correos</a>
+                </nav>
+              </div>
+              @endif
+              @if (session('user_agent')=='Admin'||session('user_agent')=='TrSo'||session('user_agent')=='Cont'||session('user_agent')=='DirGen')
+              <div class="sb-sidenav-menu-heading"><i class="fas fa-home fa-fw"></i>Reportes</div>
+              @endif
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small">Ingresado cómo:</div>
+            {{session('user')}}
+          </div>
+        </nav>
+      </div>
+      <div id="layoutSidenav_content">
+        <main>
+            @yield('text')
           <div class="row">
             @yield('content')
           </div>
-
-
-
-        </div>
-        <!-- /.container-fluid -->
-
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+              <div class="text-muted">Copyright &copy; Presidencia Municipal de Gómez Palacio 2019-2022</div>
+            </div>
+          </div>
+        </footer>
       </div>
-      <!-- End of Main Content -->
+    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-      <!-- Pie de Página -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Presidencia Municipal de Gómez Palacio 2019-2022</span>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" id="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">¿Está usted seguro de querer cerrar la sesión?</div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href="/logout">Salir</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
           </div>
         </div>
-      </footer>
-      <!-- Fin Pie de Página -->
-
-    </div>
-  </div>
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" id="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">¿Está usted seguro de querer cerrar la sesión?</div>
-        <div class="modal-footer">
-          <a class="btn btn-primary" href="/logout">Salir</a>
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-
-        </div>
       </div>
     </div>
-  </div>
+    {{-- Jquery //Necesario para usar bootstrap 4 o inferior --}}
+    <script src="../assets/js/jquery.min.js"></script>
+    {{-- Bootstrap --}}
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    {{-- Externos Plugins --}}
+    <script src="../assets/js/jquery.easing.min.js"></script>
+    <script src="../assets/js/alertify.min.js"></script>
 
-  {{-- Jquery //Necesario para usar bootstrap 4 o inferior --}}
-  <script src="../assets/js/jquery.min.js"></script>
-  {{-- Bootstrap --}}
-  <script src="../assets/js/bootstrap.bundle.min.js"></script>
-  {{-- Externos Plugins --}}
-  <script src="../assets/js/jquery.easing.min.js"></script>
-  <script src="../assets/js/alertify.min.js"></script>
-
-  <script src="../assets/js/jquery.mask.min.js"></script>
-  <script src="../assets/js/Chart.min.js"></script>
-  {{-- Base de otras páginas JS --}}
-  @yield('jsDashboard')
-  <script src="../assets/js/main.js"></script>
-  @yield('script')
-
-</body>
+    <script src="../assets/js/jquery.mask.min.js"></script>
+    {{-- Base de otras páginas JS --}}
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/mainForm.js"></script>
+    @yield('jsDashboard')
+    <script src="../assets/js/scripts.js"></script>
+  </body>
 </html>

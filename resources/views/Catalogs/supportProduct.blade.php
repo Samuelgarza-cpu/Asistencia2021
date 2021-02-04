@@ -3,13 +3,13 @@
 @endsection
 
 @section('titleTable')
-  Relacionar Productos a Apoyos
+  Relacionar Categorias a Apoyos
 @endsection
 
 @section('headerTable')
   <th data-field="number" data-sortable="true">#</th>
   <th data-field="support" data-sortable="true">Apoyo</th>
-  <th data-field="product" data-sortable="true">Producto</th>
+  <th data-field="product" data-sortable="true">Categoría</th>
   <th data-field="status" data-sortable="true">Estado</th>
   <th data-field="actions" data-events="operateEvents" data-width="80"></th>
 @endsection
@@ -57,12 +57,12 @@
                             <div class="custom-control custom-switch">
                               <input type="checkbox" class="custom-control-input" name="active" id="active" checked>
                               <label class="custom-control-label" for="active">Deslice a la derecha para activar</label>
-                            </div>                  
+                            </div>
                           </div>
                     </div>
                   <div class="modal-footer">
                       <button type="submit" class="btn btn-primary" id="save">Guardar</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                   </div>
                 </form>
               </div>
